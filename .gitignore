@@ -1,0 +1,29 @@
+# dependencies
+node_modules/
+.pnpm-debug.log*
+yarn.lock
+package-lock.json
+
+# production build
+dist/
+build/
+
+# local env files
+.env
+.env.local
+.env.*.local
+
+# misc
+.DS_Store
+*.log
+
+# vscode / editor settings
+.vscode/
+.idea/
+
+# firebase cache/config
+.firebase/
+.firebaserc
+
+# OS files
+Thumbs.db
