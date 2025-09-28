@@ -33,6 +33,7 @@ export async function submitRedeemRequest(payload) {
     code: payload.code || null,
     pin: payload.pin || null,
     declaredValue: Number(payload.declaredValue || 0),
+    whatsapp: payload.whatsapp || null,
     adminValue: null,
     status: "PENDING",
     adminId: null,

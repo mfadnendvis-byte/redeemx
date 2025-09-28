@@ -167,6 +167,12 @@ export default function AdminPanel() {
                 </div>
                 <div className="text-sm">Code: {r.code || "—"}</div>
                 <div className="text-sm">PIN: {r.pin || "—"}</div>
+                {r.whatsapp && (
+                 <div className="text-sm">
+                   WhatsApp: <span className="font-medium">{r.whatsapp}</span>
+                    </div>
+                 )}
+
                 <div className="text-sm">
                   Declared Value:{" "}
                   <span className="font-semibold">

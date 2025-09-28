@@ -12,11 +12,20 @@ export default function RedeemRequest() {
   const [declaredValue, setDeclaredValue] = useState("");
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState("");
+  const [whatsapp, setWhatsapp] = useState("");
+
 
   async function handleSubmit(e) {
     e.preventDefault();
     setMsg("");
     setLoading(true);
+
+     if (whatsapp && !/^\+?\d{7,15}$/.test(whatsapp)) {
+    setMsg("Please enter a valid WhatsApp number with country code.");
+    setLoading(false);
+    return;  // stop form submission
+  }
+  
     try {
       await submitRedeemRequest({
         userId: user.uid,
@@ -25,9 +34,10 @@ export default function RedeemRequest() {
         code,
         pin,
         declaredValue: parseFloat(declaredValue) || 0,
+        whatsapp,  // 👈 optional field
       });
       setMsg("Redeem request submitted to our partner, we will update within 30-45 minutes.");
-      setCountry(""); setProvider(""); setCode(""); setPin(""); setDeclaredValue("");
+      setCountry(""); setProvider(""); setCode(""); setPin(""); setDeclaredValue(""); setWhatsapp("");
     } catch (error) {
       setMsg("Error: " + (error.message || error));
     } finally {
@@ -52,6 +62,7 @@ export default function RedeemRequest() {
           <input required value={code} onChange={(e)=>setCode(e.target.value)} placeholder="Gift card code" className="w-full border px-3 py-2 rounded" />
           <input value={pin} onChange={(e)=>setPin(e.target.value)} placeholder="PIN (if any)" className="w-full border px-3 py-2 rounded" />
           <input required value={declaredValue} onChange={(e)=>setDeclaredValue(e.target.value)} placeholder="Declared value (USD)" type="number" step="0.01" className="w-full border px-3 py-2 rounded" />
+          <input value={whatsapp} onChange={(e) => setWhatsapp(e.target.value)} placeholder="WhatsApp Number (Optional)"className="w-full border px-3 py-2 rounded"/>
 
           <button disabled={loading} className="w-full bg-blue-600 text-white py-2 rounded">
             {loading ? "Submitting..." : "Submit Redeem"}
