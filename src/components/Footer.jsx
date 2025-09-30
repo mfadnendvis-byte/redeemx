@@ -5,10 +5,10 @@ export default function Footer() {
        <p className="mt-2">
         Contact us:{" "}
         <a
-          href="mailto:support@redeemx.live"
+          href="mailto:customerservice@redeemx.world"
           className="text-blue-400 hover:underline"
         >
-          support@redeemx.live
+          customerservice@redeemx.world
         </a>
       </p>
 
